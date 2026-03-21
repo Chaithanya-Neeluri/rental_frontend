@@ -5,7 +5,7 @@ const defaultApiBaseUrl ='https://rental-backend-a9if.onrender.com';
 
 export const axiosClient = axios.create({
   // Allow override via `VITE_API_BASE_URL`, but default to the deployed backend.
-  baseURL: import.meta.env.VITE_API_BASE_URL || defaultApiBaseUrl,
+  baseURL: defaultApiBaseUrl,
   withCredentials: true,
   timeout: 15000,
 });
