@@ -1,8 +1,15 @@
 import axios from 'axios';
 
 // Base axios instance ready to plug into Node/Express backend
+const defaultApiBaseUrl =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:5000/api'
+    : 'https://rental-backend-a9if.onrender.com';
+
 export const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
+  // Allow override via `VITE_API_BASE_URL`, but default to the deployed backend.
+  baseURL: import.meta.env.VITE_API_BASE_URL || defaultApiBaseUrl,
   withCredentials: true,
   timeout: 15000,
 });
