@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base axios instance ready to plug into Node/Express backend
-const defaultApiBaseUrl ='https://rental-backend-a9if.onrender.com';
+const defaultApiBaseUrl ='https://rental-backend-a9if.onrender.com/api';
 
 export const axiosClient = axios.create({
   // Allow override via `VITE_API_BASE_URL`, but default to the deployed backend.
