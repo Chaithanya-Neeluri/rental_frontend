@@ -142,7 +142,7 @@ const AdminDashboard = () => {
               {!isLoading && properties.length > 0 && (
                 <div className="grid gap-5 pt-2 sm:grid-cols-2 lg:grid-cols-3">
                   {properties.map((property) => {
-                    const firstImage = property.images?.[0];
+                    const propertyImages = property.images || [];
                     const owner = property.owner_id;
 
                     return (
@@ -150,13 +150,16 @@ const AdminDashboard = () => {
                         key={property._id}
                         className="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70 shadow-md"
                       >
-                        {firstImage ? (
-                          <div className="relative h-32 sm:h-40 w-full overflow-hidden bg-slate-900">
-                            <img
-                              src={firstImage}
-                              alt={property.title}
-                              className="h-full w-full object-cover"
-                            />
+                        {propertyImages.length > 0 ? (
+                          <div className="flex h-32 sm:h-40 w-full gap-1 overflow-x-auto bg-slate-900 p-1">
+                            {propertyImages.map((imageUrl, idx) => (
+                              <img
+                                key={`${property._id}-admin-${idx}`}
+                                src={imageUrl}
+                                alt={`${property.title} ${idx + 1}`}
+                                className="h-full w-40 sm:w-52 flex-none rounded-lg object-cover"
+                              />
+                            ))}
                           </div>
                         ) : (
                           <div className="flex h-32 sm:h-40 w-full items-center justify-center bg-slate-900/80 text-xs text-slate-500">
